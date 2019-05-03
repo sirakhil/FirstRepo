@@ -1,0 +1,31 @@
+/**
+	 * This method splits a list of Strings (inputList) 
+	 * into sub-lists of size 'chunkSize'
+     * 
+     * @param inputList
+     * @return chunkedList
+     */
+    public static List<List<String>> chunkIntoSubLists(List<String>inputList, Double chunkSize){
+      
+      LOGGER.debug("Entering method chunkIntoSubLists()");
+      List<List<String>> chunkedList = new ArrayList<List<String>>();
+
+      if(inputList !=null && !inputList.isEmpty()){
+
+      int inputListSize = inputList.size();
+      int chunks =  Double.valueOf(Math.ceil(inputListSize / chunkSize)).intValue();
+      
+      LOGGER.info("Size of input list to be chunked is :: "+inputListSize);
+      LOGGER.info("Chunk Size :: "+chunkSize);
+      LOGGER.info("Number of resultant chunks :: "+chunks);
+      
+      for (int i = 0; i < chunks; i++) {
+        int start = i * chunkSize.intValue();
+        int end = Math.min(((i * chunkSize.intValue()) + chunkSize.intValue()), inputListSize);
+        chunkedList.add(inputList.subList(start, end));  
+      }}
+      
+      LOGGER.debug("Chunking process resulted in "+ chunkedList.size() + " sublists");
+      LOGGER.debug("Exiting method chunkIntoSubLists()");
+      return chunkedList;
+    }
